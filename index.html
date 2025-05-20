@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail de Référence - Architecture SI</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="rgba(255,255,255,0.03)" points="0,100 100,0 100,100"/></svg>');
+            background-size: cover;
+            opacity: 0.5;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+        
+        .feature-box {
+            padding: 2rem;
+            border-radius: 10px;
+            background-color: white;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-box:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .feature-box:hover .icon-box {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .team-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .team-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 100%;
+            width: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -40px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            border: 3px solid white;
+        }
+        
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .search-box input {
+            padding-left: 40px;
+            border-radius: 50px;
+            border: 1px solid #ddd;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            color: #777;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--secondary-color);
+        }
+        
+        .nav-pills .nav-link {
+            color: var(--dark-color);
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 3rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-archway me-2"></i>Portail Architecture SI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#architecture">Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#devsecops">DevSecOps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#references">Référentiels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Équipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#roadmap">Feuille de route</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container text-center position-relative">
+            <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInDown">Portail de Référence Architecture SI</h1>
+            <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">Centralisation des bonnes pratiques, normes, outils et cadres méthodologiques pour l'architecture logicielle, technique et DevSecOps</p>
+            <div class="animate__animated animate__fadeInUp animate__delay-2s">
+                <a href="#architecture" class="btn btn-light btn-lg me-2">Explorer</a>
+                <a href="#contact" class="btn btn-outline-light btn-lg">Contact</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="form-control form-control-lg" placeholder="Rechercher dans le portail...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="section-title">Objectifs du Portail</h2>
+                    <p class="lead">Notre portail sert de point d'entrée unique pour toutes les ressources d'architecture SI.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Centraliser et partager les bonnes pratiques et normes</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Guider toutes les parties prenantes</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Promouvoir la culture DevSecOps</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Faciliter l'alignement stratégique du SI</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary mt-3">En savoir plus</a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://via.placeholder.com/600x400" alt="Architecture SI" class="img-fluid rounded shadow-lg animate__animated animate__fadeInRight">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Sections -->
+    <section class="py-5 bg-light" id="architecture">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title d-inline-block">Domaines d'Architecture</h2>
+                <p class="lead">Explorez nos différents domaines d'expertise en architecture SI</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mx-auto">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h5 class="card-title">Architecture de Solutions</h5>
+                            <p class="card-text">Méthodologie de conception, schémas types, cadres de décision et catalogue de patrons d'architecture.</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Explorer</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mx-auto">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h5 class="card-title">Architecture Logicielle</h5>
+                            <p class="card-text">Styles architecturaux, bonnes pratiques de conception, modélisation et référentiel de composants.</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Explorer</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mx-auto">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h5 class="card-title">Architecture Technique</h5>
+                            <p class="card-text">Technologies validées, interopérabilité, stratégies de déploiement et hybridation cloud.</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Explorer</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mx-auto">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h5 class="card-title">DevSecOps</h5>
+                            <p class="card-text">CI/CD standardisée, tests automatisés, sécurité intégrée et gestion des vulnérabilités.</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Explorer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Architecture Sections -->
+    <section class="py-5" id="architecture-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
+                        <button class="nav-link active" id="v-pills-solution-tab" data-bs-toggle="pill" data-bs-target="#v-pills-solution" type="button">Architecture de Solutions</button>
+                        <button class="nav-link" id="v-pills-software-tab" data-bs-toggle="pill" data-bs-target="#v-pills-software" type="button">Architecture Logicielle</button>
+                        <button class="nav-link" id="v-pills-technical-tab" data-bs-toggle="pill" data-bs-target="#v-pills-technical" type="button">Architecture Technique</button>
+                        <button class="nav-link" id="v-pills-devsecops-tab" data-bs-toggle="pill" data-bs-target="#v-pills-devsecops" type="button">DevSecOps</button>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-solution" role="tabpanel">
+                            <h3 class="mb-4">Architecture de Solutions</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-user-tie"></i>
+                                        </div>
+                                        <h5>Rôle d'architecte solution</h5>
+                                        <p>Définition du rôle, responsabilités et compétences attendues pour un architecte solution.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-map-marked-alt"></i>
+                                        </div>
+                                        <h5>Méthodologie de conception</h5>
+                                        <p>Approche structurée de l'expression de besoin à la solution cible.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-drafting-compass"></i>
+                                        </div>
+                                        <h5>Schémas types</h5>
+                                        <p>Modèles d'architecture pour infrastructure, intégration, sécurité et autres domaines.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-balance-scale"></i>
+                                        </div>
+                                        <h5>Cadres de décision</h5>
+                                        <p>Critères d'arbitrage : coût, délai, performance, sécurité, résilience.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-primary">Accéder aux ressources</a>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="v-pills-software" role="tabpanel">
+                            <h3 class="mb-4">Architecture Logicielle</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-layer-group"></i>
+                                        </div>
+                                        <h5>Styles architecturaux</h5>
+                                        <p>n-tier, hexagonale, DDD, event-driven, CQRS et autres approches modernes.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-check-double"></i>
+                                        </div>
+                                        <h5>Bonnes pratiques</h5>
+                                        <p>Cohésion, découplage, testabilité et autres principes de conception logicielle.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-project-diagram"></i>
+                                        </div>
+                                        <h5>Modélisation</h5>
+                                        <p>UML, ERD, ArchiMate, BPMN pour la conception et la documentation.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-cubes"></i>
+                                        </div>
+                                        <h5>Composants réutilisables</h5>
+                                        <p>Bibliothèques et frameworks validés pour accélérer le développement.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-primary">Accéder aux ressources</a>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="v-pills-technical" role="tabpanel">
+                            <h3 class="mb-4">Architecture Technique</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                        <h5>Technologies validées</h5>
+                                        <p>Stack frontend, backend, middleware et autres technologies référencées.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </div>
+                                        <h5>Interopérabilité</h5>
+                                        <p>API REST, SOAP, Kafka, ESB et gestion des flux entre systèmes.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-cloud"></i>
+                                        </div>
+                                        <h5>Stratégie cloud</h5>
+                                        <p>DC interne, IaaS/PaaS, containerisation et approche hybride.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <h5>Observabilité</h5>
+                                        <p>Tracing, metrics, dashboards et outils APM pour le monitoring.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-primary">Accéder aux ressources</a>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="v-pills-devsecops" role="tabpanel">
+                            <h3 class="mb-4">DevSecOps</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </div>
+                                        <h5>CI/CD standardisée</h5>
+                                        <p>Git, Jenkins, GitLab, Nexus, Sonar et autres outils de la chaîne.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-vial"></i>
+                                        </div>
+                                        <h5>Tests automatisés</h5>
+                                        <p>Unitaires, intégration, E2E, sécurité, performance et autres tests.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                        <h5>Sécurité intégrée</h5>
+                                        <p>SAST, DAST, SCA, secrets scanning et autres pratiques de sécurité.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-box">
+                                        <div class="icon-box">
+                                            <i class="fas fa-file-alt"></i>
+                                        </div>
+                                        <h5>Conformité</h5>
+                                        <p>RGPD, NIS2 et autres réglementations à prendre en compte.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-primary">Accéder aux ressources</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DevSecOps Section -->
+    <section class="py-5 bg-light" id="devsecops">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title d-inline-block">DevSecOps</h2>
+                <p class="lead">Intégration continue, livraison continue et sécurité dès la conception</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-code-branch text-primary me-2"></i> Chaîne CI/CD</h5>
+                            <p class="card-text">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i> Intégration continue avec validation automatique</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i> Déploiement continu avec stratégies avancées</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i> Templates standardisés pour différents types de projets</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-shield-alt text-primary me-2"></i> Sécurité Intégrée</h5>
+                            <p class="card-text">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i> Analyse statique (SAST) et dynamique (DAST)</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i> Gestion des dépendances (SCA)</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i> Hardening des configurations</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-tachometer-alt text-primary me-2"></i> Monitoring</h5>
+                            <p class="card-text">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i> Tableaux de bord qualité logicielle</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i> Seuils de qualité et alertes</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i> Gestion des vulnérabilités</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-primary btn-lg">Accéder au référentiel DevSecOps complet</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section class="py-5" id="references">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title d-inline-block">Normes & Référentiels</h2>
+                <p class="lead">Nos standards et guides méthodologiques</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mx-auto mb-3">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h5 class="card-title">Référentiels internes</h5>
+                            <p class="card-text">Architectures cibles et standards techniques validés.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mx-auto mb-3">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h5 class="card-title">Normes ISO/IEC</h5>
+                            <p class="card-text">27001, 25010, 12207, TOGAF, ITIL et autres standards.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mx-auto mb-3">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h5 class="card-title">Bonnes pratiques</h5>
+                            <p class="card-text">Open Group, OWASP, NIST, CIS et autres frameworks.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box mx-auto mb-3">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h5 class="card-title">Guides méthodologiques</h5>
+                            <p class="card-text">Cadrage projet, études d'impacts, dossiers d'arbitrage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card card-hover">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-tools text-primary me-2"></i> Boîte à outils</h5>
+                            <ul>
+                                <li>Templates Word, Excel, PPT, YAML, JSON</li>
+                                <li>Outils recommandés (IDE, profilers, testeurs)</li>
+                                <li>Répertoire des APIs internes</li>
+                                <li>Librairies et SDK maison</li>
+                            </ul>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Accéder</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card card-hover">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-graduation-cap text-primary me-2"></i> Formations</h5>
+                            <ul>
+                                <li>Parcours d'intégration pour nouveaux arrivants</li>
+                                <li>MOOC et formations internes</li>
+                                <li>Meetups et tech-days</li>
+                                <li>Fiches pratiques et guides rapides</li>
+                            </ul>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Accéder</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-5 bg-light" id="team">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title d-inline-block">Notre Équipe</h2>
+                <p class="lead">L'organisation idéale de la cellule Architecture</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-card">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top team-img" alt="Responsable">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Responsable de cellule</h5>
+                            <p class="card-text text-muted">Pilotage, stratégie, arbitrage et gouvernance</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-user"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-card">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top team-img" alt="Architecte Solution">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Architecte Solution</h5>
+                            <p class="card-text text-muted">Conception transverse, arbitrage technico-fonctionnel</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-user"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-card">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top team-img" alt="Architecte Logiciel">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Architecte Logiciel</h5>
+                            <p class="card-text text-muted">Modélisation, normes de conception, qualité du code</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-user"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-card">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top team-img" alt="Architecte Technique">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Architecte Technique</h5>
+                            <p class="card-text text-muted">Infrastructure, déploiement, observabilité, cloud</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-user"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-card">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top team-img" alt="Ré
