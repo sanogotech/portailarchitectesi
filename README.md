@@ -1,7 +1,5 @@
 # Portail  Architecte SI
 
-
-
 # 🌐 **Portail de Référence – Architecture Logicielle, Technique, Solutions et DevSecOps**
 
 ## 🎯 **Objectifs du Portail**
@@ -118,6 +116,8 @@
 
 ---
 
+# Organisation idéale
+
 Voici une **organisation idéale** pour une cellule **Architecture Logicielle, Technique, DevSecOps et Solutions**, intégrée dans un **groupe de distribution d’électricité**, accompagnée des **interactions externes** clés et des **bonnes pratiques de fonctionnement**.
 
 ---
@@ -190,18 +190,11 @@ Voici une **organisation idéale** pour une cellule **Architecture Logicielle, T
 
 ---
 
-## 🎯 Prochaines étapes possibles
 
-1. Générer **un organigramme illustré** de cette cellule (hiérarchique + fonctionnel)
-2. Créer une **fiche de poste synthétique** pour chaque rôle
-3. Construire un **tableau de gouvernance inter-équipes**
-4. Démarrer le **portail de capitalisation** (maquette Docusaurus, GitBook ou Confluence)
-
-Souhaitez-vous que je vous aide à générer l'organigramme ou les fiches de poste ?
 
 ---------------------
 
-## ORGANIGRAMME DÉTAILLÉ DE LA CELLULE ARCHITECTURE LOGICIELLE, TECHNIQUE, DEVSECOPS ET SOLUTIONS
+# ORGANIGRAMME DÉTAILLÉ DE LA CELLULE ARCHITECTURE LOGICIELLE, TECHNIQUE, DEVSECOPS ET SOLUTIONS
 
 #### 1. Niveau Hiérarchique et Fonctionnel
 
@@ -317,8 +310,39 @@ Directeur Systèmes d’Information (DSI)
 
 ---
 
-Souhaitez-vous maintenant :
+### FEUILLE DE ROUTE ARCHITECTURE - 24 MOIS
 
-* Une **feuille de route détaillée sur 24 mois** alignée sur la maturité de l’entreprise ?
-* Un **PPT illustré de l’organigramme et des fiches de poste** pour communication RH ou comité ?
+#### Phase 1 : Structuration (Mois 1 à 6)
+
+* Recrutement et formation des rôles clés.
+* Mise en place de la gouvernance d’architecture (comités, processus, outils).
+* Définition du référentiel d’architecture (templates, standards, nomenclatures).
+* État des lieux des actifs SI, cartographie applicative et technique.
+* Alignement avec RSSI / Urbanisme / DPO.
+
+#### Phase 2 : Industrialisation (Mois 7 à 12)
+
+* Implémentation d’une plateforme DevSecOps (CI/CD, Sécurité, monitoring).
+* Premiers projets pilotes accompagnés par la cellule.
+* Intégration de la validation architecture dans les cycles projets.
+* Déploiement de la documentation standardisée.
+* Montée en compétence des devs / chefs de projet sur les bonnes pratiques.
+
+#### Phase 3 : Consolidation (Mois 13 à 18)
+
+* Audit de conformité des projets avec les standards d’architecture.
+* Déploiement des modèles d’architecture logique, technique, sécurité.
+* Mise en place de KPIs de maturité des projets.
+* Amélioration continue des outils internes (templates, scripts, outils de modélisation).
+* Mutualisation et capitalisation des REX.
+
+#### Phase 4 : Optimisation et Transformation (Mois 19 à 24)
+
+* Contribution active aux feuilles de route métiers / projets stratégiques.
+* Optimisation des coûts (cloud, infra, industrialisation des flux).
+* Extension des pratiques à l’ensemble des projets et applications.
+* Veille et adaptation aux nouvelles normes et tendances (Green IT, IA, IoT).
+* Métriques globales : taux de réutilisation, dette technique, qualité logicielle, temps de livraison.
+
+---
 
