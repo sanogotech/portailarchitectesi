@@ -1,9 +1,6 @@
-# portailarchitectesi
-Portail  Architecte SI
+# Portail  Architecte SI
 
-Très bien ! Voici une **version revue et enrichie** de la structure du **Portail de Référence de la Cellule Architecture Logicielle, Technique, DevSecOps et Solutions** dans un grand groupe de distribution d’électricité.
 
----
 
 # 🌐 **Portail de Référence – Architecture Logicielle, Technique, Solutions et DevSecOps**
 
